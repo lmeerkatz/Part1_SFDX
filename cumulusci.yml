@@ -8,16 +8,13 @@ project:
         default_branch: master
         repo_url: https://github.com/RadWomenCode/Part1_SFDX
     source_format: sfdx
-    dependencies:
-        - version_id: 04t6O000001INCR
-          password_env_name: RAD_PACKAGE_KEY
 
 flows:
     dev_org:
         steps:
-            1: 
-                task: update_dependencies
-            2:
+            # leave standard dev_org steps alone for #1-4
+            # https://cumulusci.readthedocs.io/en/stable/flows.html#dev-org
+            5:
                 task: add_standard_value_set_entries
                 options:
                     api_names: CaseOrigin
@@ -28,7 +25,7 @@ flows:
                           label: Questionable Contact 
                 ui_options:
                     name: Add values to Case Origin picklist
-            3: 
+            6: 
                 task: add_page_layout_fields
                 options:
                     api_names: "Account-Account Layout"
@@ -50,7 +47,7 @@ flows:
                             column: last
                 ui_options:
                     name: "Add fields to Account Layout"
-            4: 
+            7: 
                 task: add_page_layout_fields
                 options:
                     api_names: "Case-Case Layout"
@@ -62,7 +59,7 @@ flows:
                             column: first
                 ui_options:
                     name: "Add fields to Case Layout"
-            5:
+            8:
                 task: execute_anon
                 options:    
                     path: scripts/sort_app_menu.apex
